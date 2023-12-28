@@ -105,13 +105,13 @@ process.Events = cms.EDAnalyzer('MasterAnalyzer')
 # ------------ Configure output root file -------------------#
 
 #------------------------------------------------------------#
-# The output root files are stored in the ./output_files     #
-# directory.                                                 #
+#          The output root files are stored in the           #
+#          ./AnalysisCodes/InputFiles directory.             #
 #------------------------------------------------------------#
 
-PU_output_filename = "../output_files/sample_input_PU.root" 
+PU_output_filename = "../../AnalysisCodes/InputFiles/sample_input_PU.root" 
 
-noPU_output_filename = "../output_files/sample_input_noPU.root"
+noPU_output_filename = "../../AnalysisCodes/InputFiles/sample_input_noPU.root"
 
 
 process.TFileService = cms.Service("TFileService",
