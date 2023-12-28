@@ -105,7 +105,7 @@ process.Events = cms.EDAnalyzer('MasterAnalyzer')
 # ------------ Configure output root file -------------------#
 
 #------------------------------------------------------------#
-# The output root files are stored in the output_files       #
+# The output root files are stored in the ./output_files     #
 # directory.                                                 #
 #------------------------------------------------------------#
 
