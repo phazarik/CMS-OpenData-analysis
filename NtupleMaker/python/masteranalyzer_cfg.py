@@ -27,10 +27,10 @@ process.options = cms.untracked.PSet(wantSummary = cms.untracked.bool(True))
 
 #-------------------------------------------------------------#
 # Set "input = cms.untracked.int32(-1)" to run all the events.#
-# Set to 1000 by default for faster processing of events.     #
+# Set to 1000 by default for faster processing of events.     # 
 #-------------------------------------------------------------#
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1000))  
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1000)) 
 
 # ------------- Additional Configuration Files -------------- #
 
@@ -122,7 +122,7 @@ process.TFileService = cms.Service("TFileService",
 )
 
 
-#-------------- This will run everything ------------------- #
+#-------------- This will run everything :) ------------------- #
 process.p = cms.Path(process.Events)
 
 
