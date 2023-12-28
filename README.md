@@ -42,4 +42,4 @@ scram b
 cmsRun ntuplemaker_cfg.py
 ```
 6. That's it.
-The output NTuples should be available in the `./output_files` directory. 
+The output NTuples should be available in the `./AnalysisCodes/InputFiles` directory. 
