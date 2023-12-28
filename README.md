@@ -27,13 +27,9 @@ For more information on how to set up the CMS-OpenData Virtual Machine visit (ht
 > **Note :** For setting up the CMS environment, CMSSW_5_3_32, do the following:
 	1. Open CMS Shell.
 	2. Set up the software architecture and version by doing:
-	```
-	export SCRAM_ARCH=slc6_amd64_gcc472
-	```
+	'export SCRAM_ARCH=slc6_amd64_gcc472'
 	3. Set up a new release area for CMSSW_5_3_32:
-	```
-	cmsrel CMSSW_5_3_32
-	```
+	'cmsrel CMSSW_5_3_32'
 
 ### Steps to make the NTuples:
 1. Open the CMS Shell Terminal and locate the NTupleMaker directory.
