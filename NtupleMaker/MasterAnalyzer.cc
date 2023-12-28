@@ -47,6 +47,8 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
   PFCand_rawEcalEnergy.clear();
   PFCand_rawHcalEnergy.clear();
 
+  // Particle Flow Candidates Collection 		
+
   if(particleFlow.isValid()){
     
     numPFCandidates=particleFlow->size();
@@ -54,8 +56,6 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     for(reco::PFCandidateCollection::const_iterator pf=particleFlow->begin(); pf!=particleFlow->end(); pf++){
       
       float hoERatio = (pf->hoEnergy())/(pf->rawHoEnergy());
-      
-      //particleFlow candidates//
 
       if(pf->pt()>1){
 	
