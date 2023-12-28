@@ -20,7 +20,7 @@ The NTuple maker codes can be found in the `./NTupleMaker` directory.
 
 ### Requirements:
 1. CMS-OpenData-Virtual Machine should be up and running in the system.
-2. CMS Environment should be set up with version CMSSW_5_3_32.
+2. CMS Environment should be set up with version `CMSSW_5_3_32.`
 3. The NTupleMaker file shall be placed in the directory `./CMSSW_5_3_32/src/`
 
 For more information on how to set up the CMS-OpenData Virtual Machine visit (https://opendata.cern.ch/docs/about-cms)
