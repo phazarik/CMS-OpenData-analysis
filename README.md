@@ -16,20 +16,15 @@ The verbosity number in the `Process()` function of the main C script can be twe
 ## How to make ntuples:
 
 
-The NTuple maker codes can be found in the './NTupleMaker' directory.
+The NTuple maker codes can be found in the `./NTupleMaker` directory.
 
 ### Requirements:
 1. CMS-OpenData-Virtual Machine should be up and running in the system.
 2. CMS Environment should be set up with version CMSSW_5_3_32.
-3. The NTupleMaker file shall be placed in the directory './CMSSW_5_3_32/src/' 
+3. The NTupleMaker file shall be placed in the directory `./CMSSW_5_3_32/src/`
 
 For more information on how to set up the CMS-OpenData Virtual Machine visit (https://opendata.cern.ch/docs/about-cms)
-> **Note :** For setting up the CMS environment, CMSSW_5_3_32, do the following:
-	1. Open CMS Shell.
-	2. Set up the software architecture and version by doing:
-	'export SCRAM_ARCH=slc6_amd64_gcc472'
-	3. Set up a new release area for CMSSW_5_3_32:
-	'cmsrel CMSSW_5_3_32'
+> **Note :** For setting up the CMS environment, CMSSW_5_3_32, open CMS Shell, set up the software architecture and version by doing `export SCRAM_ARCH=slc6_amd64_gcc472`, set up a new release area for CMSSW_5_3_32 by doing `cmsrel CMSSW_5_3_32`.
 
 ### Steps to make the NTuples:
 1. Open the CMS Shell Terminal and locate the NTupleMaker directory.
@@ -41,10 +36,10 @@ cmsenv
 ```
 scram b
 ```
-4. Open the './python' directory to find the python exectuable configuration file, "./masteranalyzer.py". This file is going to run the CMSSW process, or in this case, give the output root file. 
+4. Open the `./python` directory to find the python exectuable configuration file, `masteranalyzer.py`. This file is going to run the CMSSW process, or in this case, give the output root file. 
 5. To execute the configuration file and get the output NTuple do:
 ```
 cmsRun masteranalyzer.py
 ```
 6. That's it.
-The output NTuples should be available in the './output_files' directory. 
+The output NTuples should be available in the `./output_files` directory. 
