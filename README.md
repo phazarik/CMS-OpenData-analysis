@@ -50,4 +50,5 @@ scram b
 ```
 cmsRun masteranalyzer.py
 ```
-6. That's it. The output NTuples should be available in the './output_files' directory.
+6. That's it.
+The output NTuples should be available in the './output_files' directory. 
