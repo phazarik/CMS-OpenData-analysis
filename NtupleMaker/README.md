@@ -4,7 +4,7 @@
 
 The NTupleMaker is a EDAnalyzer that extracts information from AOD & AODSIM formats of different physics objects and stores them in a ROOT file.
 
-This particular NTupleMaker can extract information of ParticleFlowCandidates, RecoJets, GenJets and GenParticles. The EDAnalyzer can be executed by the configuration file called `masteranalyzer_cfg.py`
+This particular NTupleMaker can extract information of ParticleFlowCandidates, RecoJets, GenJets and GenParticles. The EDAnalyzer can be executed by the configuration file called `ntuplemaker_cfg.py`
 
 ## General Instructions on Usage:
 
