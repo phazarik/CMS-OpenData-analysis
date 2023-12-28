@@ -37,4 +37,4 @@ cmsRun masteranalyzer_cfg.py
 ```
 10. That's it! <br>
 
-The NTuples will be available at `./output_files`
+The NTuples will be available at `./output_files` directory.
