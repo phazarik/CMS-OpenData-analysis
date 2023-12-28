@@ -36,10 +36,10 @@ cmsenv
 ```
 scram b
 ```
-4. Open the `./python` directory to find the python exectuable configuration file, `masteranalyzer.py`. This file is going to give the output root file. 
+4. Open the `./python` directory to find the python exectuable configuration file, `ntuplemaker_cfg.py`. This file is going to give the output root file. 
 5. To execute the configuration file and get the output NTuple do:
 ```
-cmsRun masteranalyzer.py
+cmsRun ntuplemaker_cfg.py
 ```
 6. That's it.
 The output NTuples should be available in the `./output_files` directory. 
