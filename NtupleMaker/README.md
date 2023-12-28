@@ -33,7 +33,7 @@ cd python
 ```
 9. Run the CMSSW executable configuration file (the python file) by the following command:
 ```
-cmsRun masteranalyzer_cfg.py
+cmsRun ntuplemaker_cfg.py
 ```
 10. That's it! <br>
 
