@@ -109,9 +109,9 @@ process.Events = cms.EDAnalyzer('MasterAnalyzer')
 #          ./AnalysisCodes/InputFiles directory.             #
 #------------------------------------------------------------#
 
-PU_output_filename = "../../AnalysisCodes/InputFiles/sample_input_PU.root" 
+PU_output_filename = "../output_files/sample_input_PU.root" 
 
-noPU_output_filename = "../../AnalysisCodes/InputFiles/sample_input_noPU.root"
+noPU_output_filename = "../output_files/sample_input_noPU.root"
 
 
 process.TFileService = cms.Service("TFileService",
