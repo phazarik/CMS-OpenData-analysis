@@ -87,6 +87,11 @@ void AnaOpenData::SlaveTerminate()
   //You can also create a text file here as a summary, keeping the same information.
   //For example, the text file can take the name _SumFileName
 
+  time(&end);
+
+  double time_taken = double(end-start);
+  cout<<"\nTime taken by the program is : "<<(int)time_taken<<" seconds \n"<<endl;
+
 }
 
 void AnaOpenData::Terminate()
@@ -141,10 +146,10 @@ Bool_t AnaOpenData::Process(Long64_t entry)
   PFall.clear();
   PFelectron.clear();
 
-  //Loopong over all the candidates to pick the ibjects we want:
+  //Looping over all the candidates to pick the objects we want:
   for(int i=0; i< (*numPFCandidates); i++){
 
-    //Creating a temporaray object and setting its parameters from the input file.
+    //Creating a temporary object and setting its parameters from the input NTuple.
     //If the parameters satisfy our needs, we will keep it in the PFelectron array.
     Particle temp;
     temp.index = i;
@@ -168,7 +173,7 @@ Bool_t AnaOpenData::Process(Long64_t entry)
 
   }
 
-  //Sorting the particle arrays in descenting order of pT:
+  //Sorting the particle arrays in descending order of pT:
   for(int i=0; i<(int)PFall.size()-1; i++){
     for(int j=i+1; j<(int)PFall.size(); j++){
       if(PFall[i].v.Pt() < PFall[j].v.Pt() ) swap(PFall.at(i), PFall.at(j));}}
@@ -184,7 +189,7 @@ Bool_t AnaOpenData::Process(Long64_t entry)
 
   //Note : All the histograms that are being filled here need to be
   //initialized in the BookHistograms() function.
-  //Otherwise the code will show runtime error.
+  //Otherwise the code will show runtime error. (segmentation violation)
 
   h.hist[0]->Fill((int)PFall.size());
 

@@ -16,12 +16,12 @@ The verbosity number in the `Process()` function of the main C script can be twe
 ## How to make ntuples:
 
 
-The NTuple maker codes can be found in the `./NTupleMaker` directory.
+The NTuple maker codes can be found in the `./NtupleMaker` directory.
 
 ### Requirements:
 1. CMS-OpenData-Virtual Machine should be up and running in the system.
 2. CMS Environment should be set up with version `CMSSW_5_3_32.`
-3. The NTupleMaker file shall be placed in the directory `./CMSSW_5_3_32/src/`
+3. The NTupleMaker files shall be placed in the directory `./CMSSW_5_3_32/src/`
 
 For more information on how to set up the CMS-OpenData Virtual Machine visit (https://opendata.cern.ch/docs/about-cms)
 > **Note :** For setting up the CMS environment, CMSSW_5_3_32, open CMS Shell, set up the software architecture and version by doing `export SCRAM_ARCH=slc6_amd64_gcc472`, set up a new release area for CMSSW_5_3_32 by doing `cmsrel CMSSW_5_3_32`.
