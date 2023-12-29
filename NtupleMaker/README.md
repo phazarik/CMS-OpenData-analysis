@@ -37,4 +37,4 @@ cmsRun ntuplemaker_cfg.py
 ```
 10. That's it! <br>
 
-The NTuples will be available at `./output_files/` directory.
+The NTuples will be available at `./output_files` directory.
