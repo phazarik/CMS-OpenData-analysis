@@ -15,9 +15,9 @@ This particular NTupleMaker can extract information of ParticleFlowCandidates, R
 ```
 git clone https://github.com/phazarik/CMS-OpenData-analysis.git
 ```
-5. Change to the `CMS-OpenData-analysis/NTupleMaker/` directory.
+5. Change to the `CMS-OpenData-analysis/NtupleMaker/` directory.
 ```
-cd CMS-OpenData-analysis/NTupleMaker/
+cd CMS-OpenData-analysis/NtupleMaker/
 ```
 6. Now set the runtime environment by running the following command:
 ```
@@ -37,4 +37,4 @@ cmsRun ntuplemaker_cfg.py
 ```
 10. That's it! <br>
 
-The NTuples will be available at `./AnalysisCode/InputFiles/` directory.
+The NTuples will be available at `./output_files/` directory.
