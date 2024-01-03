@@ -27,4 +27,4 @@ root
 .x driver.C(0)
 ```
 8. Locate to the `./OutputHists` directory (outside the ROOT prompt).
-9. That's it. Now one can use `TBrowser` to view the `hst_sample.root` file.
+9. That's it. Now one can use `TBrowser`(in the ROOT prompt) to view the `hst_sample.root` file.
