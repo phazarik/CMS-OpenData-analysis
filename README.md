@@ -44,7 +44,7 @@ cmsRun ntuplemaker_cfg.py
 6. That's it.
 The output NTuples should be available in the `./output_files` directory.
 
-## Getting the output ROOT files to the local machine:
+### Getting the output ROOT files to the local machine:
 1. Open the Outer Shell Terminal (not the CMS Terminal) and locate the `./output_files` directory.
 2. Now use the secure copy command `scp` to move the file to the desired local machine directory.
 ```
