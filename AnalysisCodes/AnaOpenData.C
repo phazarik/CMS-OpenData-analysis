@@ -162,11 +162,11 @@ Bool_t AnaOpenData::Process(Long64_t entry)
     PFall.push_back(temp);
     
     //For PFelectrons:
-    bool itis_stable   = temp.status == 1;
+    //bool itis_stable   = temp.status == 1;
     bool kinematic_cuts = temp.v.Pt()>10 && fabs(temp.v.Eta()) < 2.4;
     bool itis_electron = fabs(temp.pdgid) == 11;
 
-    if(itis_electron && itis_stable && kinematic_cuts){
+    if(itis_electron && kinematic_cuts){
       PFelectron.push_back(temp);
       nele ++;
     }
