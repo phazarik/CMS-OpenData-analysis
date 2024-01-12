@@ -104,10 +104,9 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     numPFCandidates=particleFlow->size();
     
     for(reco::PFCandidateCollection::const_iterator pf=particleFlow->begin(); pf!=particleFlow->end(); pf++){
-      
-      float hoERatio = (pf->hoEnergy())/(pf->rawHoEnergy());
 
-      if(pf->pt()>1){
+	// hoERatio
+      	float hoERatio = (pf->hoEnergy())/(pf->rawHoEnergy());
 	
 	PFCand_e.push_back(pf->energy());
 	PFCand_eta.push_back(pf->eta());
@@ -124,7 +123,6 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	PFCand_hoERatio.push_back(hoERatio);
 	PFCand_rawEcalEnergy.push_back(pf->rawEcalEnergy());
 	PFCand_rawHcalEnergy.push_back(pf->rawHcalEnergy());
-      }
     }    
   }
 
@@ -136,8 +134,6 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     
     for(reco::PFJetCollection::const_iterator rJet=recoJets->begin(); rJet!=recoJets->end(); rJet++){
       
-      if(rJet->pt()>0.8){
-	
 	RecoJet_e.push_back(rJet->energy());
 	RecoJet_pt.push_back(rJet->pt());	
 	RecoJet_eta.push_back(rJet->eta());
@@ -148,7 +144,7 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	RecoJet_px.push_back(rJet->px());
 	RecoJet_py.push_back(rJet->py());
 	RecoJet_pz.push_back(rJet->pz());
-      }
+      
     }
   }
 
@@ -158,8 +154,6 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     numGenJets=genJets->size();
     
     for(reco::GenJetCollection::const_iterator gJet=genJets->begin(); gJet!=genJets->end(); gJet++){
-      
-      if(gJet->pt()>0.8){
 	
 	GenJet_e.push_back(gJet->energy());
 	GenJet_pt.push_back(gJet->pt());	
@@ -171,7 +165,6 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	GenJet_px.push_back(gJet->px());
 	GenJet_py.push_back(gJet->py());
 	GenJet_pz.push_back(gJet->pz());
-      }
     }
   }
   
@@ -182,8 +175,6 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
     numGenParticles=genParticles->size();
     
     for(reco::GenParticleCollection::const_iterator genPart=genParticles->begin(); genPart!=genParticles->end(); genPart++){
-      
-      if(genPart->pt()>0.8){
 	
 	GenParticle_e.push_back(genPart->energy());
 	GenParticle_pt.push_back(genPart->pt());
@@ -195,7 +186,6 @@ MasterAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
 	GenParticle_px.push_back(genPart->px());
 	GenParticle_py.push_back(genPart->py());
 	GenParticle_pz.push_back(genPart->pz());
-      }
     }
   }
   mtree->Fill();
