@@ -106,7 +106,7 @@ process.Events = cms.EDAnalyzer('MasterNTupleMaker')
 #------------------------------------------------------------#
 
 
-output_filename = "../output/sample_output.root"
+output_filename = "../output_files/sample_output.root"
 
 process.TFileService = cms.Service("TFileService",
                                    #if pileup (uncomment this)
