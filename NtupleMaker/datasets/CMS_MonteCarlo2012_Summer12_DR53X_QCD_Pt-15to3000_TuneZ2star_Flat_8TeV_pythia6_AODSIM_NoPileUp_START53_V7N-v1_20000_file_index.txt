@@ -1,5 +1,0 @@
-root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2012/Summer12_DR53X/QCD_Pt-15to3000_TuneZ2star_Flat_8TeV_pythia6/AODSIM/NoPileUp_START53_V7N-v1/20000/024D323C-D06E-E311-8F4B-0025901D4B08.root
-root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2012/Summer12_DR53X/QCD_Pt-15to3000_TuneZ2star_Flat_8TeV_pythia6/AODSIM/NoPileUp_START53_V7N-v1/20000/024D996D-056F-E311-903B-003048D43730.root
-root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2012/Summer12_DR53X/QCD_Pt-15to3000_TuneZ2star_Flat_8TeV_pythia6/AODSIM/NoPileUp_START53_V7N-v1/20000/02570C5D-D06E-E311-B9AD-002590494E36.root
-root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2012/Summer12_DR53X/QCD_Pt-15to3000_TuneZ2star_Flat_8TeV_pythia6/AODSIM/NoPileUp_START53_V7N-v1/20000/042E1F6F-096F-E311-A8F1-003048C693BC.root
-root://eospublic.cern.ch//eos/opendata/cms/MonteCarlo2012/Summer12_DR53X/QCD_Pt-15to3000_TuneZ2star_Flat_8TeV_pythia6/AODSIM/NoPileUp_START53_V7N-v1/20000/04D94A7C-D06E-E311-B6A0-00266CF33100.root
