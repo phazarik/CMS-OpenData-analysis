@@ -107,7 +107,7 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   GenParticle_pz.clear();
 
   // Reco Muon Collection //
-  
+  nMuon=0;
   Muon_e.clear();
   Muon_pt.clear();
   Muon_eta.clear();
@@ -120,7 +120,7 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   Muon_pz.clear();
   
   // Reco Electron Collection //
-
+  nElectron=0;
   Electron_e.clear();
   Electron_pt.clear();
   Electron_eta.clear();
@@ -133,7 +133,7 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   Electron_pz.clear();
 
   // Reco Photon Collection //
-
+  nPhoton=0;
   Photon_e.clear();
   Photon_pt.clear();
   Photon_eta.clear();
