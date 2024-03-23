@@ -34,12 +34,25 @@ cmsenv
 ```
 3. Compile the code by doing:
 ```
-scram b
+scram b -j 8
 ```
 4. Open the `./python` directory to find the python exectuable configuration file, `masterntuplemaker_cfg.py`. This file is going to give the output root file. 
 5. To execute the configuration file and get the output NTuple do:
+
+### For Data:
+For 7TeV:
 ```
-cmsRun masterntuplemaker_cfg.py
+cmsRun masterntuplemaker_cfg.py isData=True is7TeV=True nEvents=1000
+```
+For 8TeV:
+
+```
+cmsRun masterntuplemaker_cfg.py isData=True is8TeV=True nEvents=1000
+```
+### For MC:
+
+```
+cmsRun masterntuplemaker_cfg.py isData=False nEvents=1000
 ```
 6. That's it.
 The output NTuples should be available in the `./output_files` directory.
@@ -51,3 +64,5 @@ The output NTuples should be available in the `./output_files` directory.
 scp -C [output_filename.root] username_localmachine@[Host_IP_Address]:/home/username_localmachine/desired/path/to/store/the/output_file
 ```
 3. Now one can access the NTuples in their local machine and run the Analysis Codes.
+
+
