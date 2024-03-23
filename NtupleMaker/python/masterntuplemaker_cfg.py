@@ -150,7 +150,7 @@ if opt.isData:
 else:
     process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_V27_MC_stripped.db')
     process.GlobalTag.globaltag = 'START53_V27::All'
-    output_filename = cms.string("../output_files/CMS_MC_AOD_GluGlu.root")
+    output_filename = cms.string("../output_files/CMS_MC_AODSIM.root")
     files = FileUtils.loadListFromFile("../datasets/CMS_MonteCarlo2012_Summer12_DR53X_GluGluTo4L_Contin_8TeV-gg2vv315-pythia6_AODSIM_PU_S10_START53_V19-v1_00000_file_index.txt")
 
     process.source = cms.Source("PoolSource",
