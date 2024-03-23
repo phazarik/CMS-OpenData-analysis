@@ -42,11 +42,11 @@ scram b -j 8
 5. To execute the configuration file and get the output NTuple do:
 
 ### For Data:
-For 7TeV:
+#### For 7TeV:
 ```
 cmsRun masterntuplemaker_cfg.py isData=True is7TeV=True nEvents=1000
 ```
-For 8TeV:
+#### For 8TeV:
 
 ```
 cmsRun masterntuplemaker_cfg.py isData=True is8TeV=True nEvents=1000
