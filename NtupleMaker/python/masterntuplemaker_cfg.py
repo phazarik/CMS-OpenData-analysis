@@ -22,6 +22,55 @@ process.MessageLogger.cerr.INFO = cms.untracked.PSet(
 )
 
 process.options = cms.untracked.PSet(wantSummary = cms.untracked.bool(True))
+ 
+
+# ------------- Additional Configuration Files -------------- #
+
+process.load("Configuration.Geometry.GeometryIdeal_cff")
+process.load("Configuration.StandardSequences.MagneticField_cff")
+
+from Configuration.AlCa.GlobalTag import GlobalTag
+
+process.load('Configuration.StandardSequences.Services_cff')
+process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+
+#--------------------------------------------------------------#
+#                   VarParsing Options                         #
+#--------------------------------------------------------------#
+
+from FWCore.ParameterSet.VarParsing import VarParsing
+
+opt=VarParsing('python')
+
+opt.register('nEvents',
+             -1,
+             VarParsing.multiplicity.singleton,
+             VarParsing.varType.int,
+             "Number of Events to Process"
+             )
+
+opt.register('isData',
+             False,
+             VarParsing.multiplicity.singleton,
+             VarParsing.varType.bool,
+             "Processing on Data"
+             )
+
+opt.register('is7TeV',
+             False,
+             VarParsing.multiplicity.singleton,
+             VarParsing.varType.bool,
+             "7TeV Data"
+             )
+
+opt.register('is8TeV',
+             False,
+             VarParsing.multiplicity.singleton,
+             VarParsing.varType.bool,
+             "8TeV Data"
+             )
+
+opt.parseArguments()
 
 # ------------------ Maximum Number of Events --------------- #
 
@@ -30,14 +79,16 @@ process.options = cms.untracked.PSet(wantSummary = cms.untracked.bool(True))
 # Set to 1000 by default for faster processing of events.     # 
 #-------------------------------------------------------------#
 
-process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(1000)) 
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(opt.nEvents))
 
-# ------------- Additional Configuration Files -------------- #
 
-process.load("Configuration.Geometry.GeometryIdeal_cff")
-process.load("Configuration.StandardSequences.MagneticField_cff")
+# ---------------------------------------------------------- #
+# Working with Data will require a data quality filter.      #
+# One can find the JSON files required for specific dataset  #
+# on the CERN Open Data Portal.                              #  
+# -----------------------------------------------------------#
 
-#--------------- sourceFile --------------#
+
 
 #-------------------------------------------------------------#
 #             Instructions on Source Files                    #
@@ -66,36 +117,56 @@ process.load("Configuration.StandardSequences.MagneticField_cff")
 #files.extend(FileUtils.loadListFromFile("../datasets/filename1.txt")) 
 #files.extend(FileUtils.loadListFromFile("../datasets/filename2.txt"))
 
+
+#-------------------------------------------------------------#
+#                  Condition for Data & MC                    #
 #-------------------------------------------------------------#
 
-files = FileUtils.loadListFromFile("../datasets/sample_input.txt")
+if opt.isData:
+    process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/FT53_V21A_AN6_FULL_data_stripped.db')
+    process.GlobalTag.globaltag = 'FT53_V21A_AN6_FULL::All'
+    output_filename = cms.string("../output_files/CMS_Data_AOD.root")
+    files = FileUtils.loadListFromFile("../datasets/CMS_Run2012D_TauParked_AOD_22Jan2013-v1_20000_file_index.txt")
 
-process.source = cms.Source("PoolSource",
-                            fileNames = cms.untracked.vstring(
-                                *files
-    )
-)
+    
+    process.source = cms.Source("PoolSource",
+                                fileNames = cms.untracked.vstring( *files )
+                                )
+    
+    if opt.is7TeV:
+        goodJSON_7TeV = "../interface/Cert_160404-180252_7TeV_ReRecoNov08_Collisions11_JSON.txt"
+        myLumis = LumiList.LumiList(filename=goodJSON_7TeV).getCMSSWString().split(",")
+        process.source.lumisToProcess = CfgTypes.untracked(
+            CfgTypes.VLuminosityBlockRange())
+        process.source.lumisToProcess.extend(myLumis)
+        
+    if opt.is8TeV:
+        goodJSON_8TeV = "../interface/Cert_190456-208686_8TeV_22Jan2013ReReco_Collisions12_JSON.txt"
+        myLumis = LumiList.LumiList(filename=goodJSON_8TeV).getCMSSWString().split(",")
+        process.source.lumisToProcess = CfgTypes.untracked(
+            CfgTypes.VLuminosityBlockRange())
+        process.source.lumisToProcess.extend(myLumis)
 
-# ---------------------------------------------------------- #
-# Working with Data will require a data quality filter.      #
-# One can find the JSON files required for specific dataset  #
-# on the CERN Open Data Portal.                              #  
-# -----------------------------------------------------------#
+else:
+    process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_V27_MC_stripped.db')
+    process.GlobalTag.globaltag = 'START53_V27::All'
+    output_filename = cms.string("../output_files/CMS_MC_AOD_GluGlu.root")
+    files = FileUtils.loadListFromFile("../datasets/CMS_MonteCarlo2012_Summer12_DR53X_GluGluTo4L_Contin_8TeV-gg2vv315-pythia6_AODSIM_PU_S10_START53_V19-v1_00000_file_index.txt")
 
-#Uncomment this while using data
+    process.source = cms.Source("PoolSource",
+                                fileNames = cms.untracked.vstring( *files )
+                                )
 
-goodJSON = "../interface/Cert_190456-208686_8TeV_22Jan2013ReReco_Collisions12_JSON.txt"
-#goodJSON = "../interface/Cert_160404-180252_7TeV_ReRecoNov08_Collisions11_JSON.txt"
-myLumis = LumiList.LumiList(filename=goodJSON).getCMSSWString().split(",")
-process.source.lumisToProcess = CfgTypes.untracked(
-    CfgTypes.VLuminosityBlockRange())
-process.source.lumisToProcess.extend(myLumis)
+#-------------------------------------------------------------#
+
 
 
 
 # ----------------- Analyzer Module ------------------------ #
 
-process.Events = cms.EDAnalyzer('MasterNTupleMaker')
+process.Events = cms.EDAnalyzer('MasterNTupleMaker',
+                                isData=cms.untracked.bool(opt.isData)
+                                )
 
 
 # ------------ Configure output root file -------------------#
@@ -105,15 +176,8 @@ process.Events = cms.EDAnalyzer('MasterNTupleMaker')
 #          ./NtupleMaker/output/ directory.                  #
 #------------------------------------------------------------#
 
-
-output_filename = "../output_files/sample_output.root"
-
 process.TFileService = cms.Service("TFileService",
-                                   #if pileup (uncomment this)
-                                   #fileName = cms.string(PU_output_filename)
-                                   #if no_pileup (uncomment this)
-                                   #fileName = cms.string(noPU_output_filename)
-                                   fileName = cms.string(output_filename),
+                                   fileName = output_filename,
                                    closeFileFast = cms.untracked.bool(True)
 )
 
