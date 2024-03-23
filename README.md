@@ -18,8 +18,10 @@ The verbosity number in the `Process()` function of the main C script can be twe
 
 The NTuple maker codes can be found in the `./NtupleMaker` directory.
 
+## For CMS-OpenData-Virtual Machine:
+
 ### Requirements:
-1. CMS-OpenData-Virtual Machine should be up and running in the system.
+1. CMS-OpenData-Virtual Machine should be up and running on the system.
 2. CMS Environment should be set up with version `CMSSW_5_3_32.`
 3. The NTupleMaker files shall be placed in the directory `./CMSSW_5_3_32/src/`
 
@@ -62,7 +64,58 @@ The output NTuples should be available in the `./output_files` directory.
 2. Now use the secure copy command `scp` to move the file to the desired local machine directory.
 ```
 scp -C [output_filename.root] username_localmachine@[Host_IP_Address]:/home/username_localmachine/desired/path/to/store/the/output_file
+
 ```
 3. Now one can access the NTuples in their local machine and run the Analysis Codes.
 
+## For Docker:
 
+### Requirements:
+1. Docker-Desktop should be up and running on the system.
+2. Docker container image containing CMSSW_5_3_32 should be installed.
+3. The NTupleMaker files shall be placed in the directory `./CMSSW_5_3_32/src/`
+
+For more information on how to set up the Docker-Desktop visit (https://opendata.cern.ch/docs/cms-guide-docker)
+
+### Steps to make the NTuples:
+1. Open the terminal and run `docker start -i [name_of_container]`
+2. Git Clone this repository in the directory`/code/CMSSW_5_3_32/src/`. Navigate to director `/code/CMSSW_5_3_32/src/CMS-OpenData-analysis/NtupleMaker/`
+3. Compile the code by doing:
+```
+scram b -j 8
+```
+4. Open the `./python` directory to find the python exectuable configuration file, `masterntuplemaker_cfg.py`. This file is going to give the output root file. 
+5. To execute the configuration file and get the output NTuple do:
+
+### For Data:
+For 7TeV:
+```
+cmsRun masterntuplemaker_cfg.py isData=True is7TeV=True nEvents=1000
+```
+For 8TeV:
+
+```
+cmsRun masterntuplemaker_cfg.py isData=True is8TeV=True nEvents=1000
+```
+### For MC:
+
+```
+cmsRun masterntuplemaker_cfg.py isData=False nEvents=1000
+```
+6. That's it.
+The output NTuples should be available in the `./output_files` directory.
+
+### Getting the output ROOT files to the local machine:
+1. Open another terminal on your local machine.
+2. Do the following:
+
+### if Data:
+```
+docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/NtupleMaker/ouput_files/CMS_Data_AOD.root  /home/xondikoi/Desktop/ 
+```
+### if MC:
+
+```
+docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/NtupleMaker/ouput_files/CMS_MC_AODSIM.root  /home/xondikoi/Desktop/ 
+```
+3. Now one can access the NTuples in their local machine and run the Analysis Codes.
