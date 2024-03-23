@@ -1,7 +1,7 @@
 //C++
 //Class: MasterNTupleMaker_headerfile
 //Original Author: Raj Handique
-//Created on: 10 January 2024
+//Created on: 7 March 2024
 
 //----------------------------------//
 // All initialization & declaration //
@@ -29,12 +29,6 @@
 
 #include "DataFormats/ParticleFlowCandidate/interface/PFCandidate.h"
 #include "DataFormats/ParticleFlowCandidate/interface/PFCandidateFwd.h"
-#include "DataFormats/ParticleFlowCandidate/interface/IsolatedPFCandidate.h"
-#include "DataFormats/ParticleFlowCandidate/interface/IsolatedPFCandidateFwd.h"
-#include "DataFormats/ParticleFlowCandidate/interface/PFCandidateElectronExtra.h"
-#include "DataFormats/ParticleFlowCandidate/interface/PFCandidateElectronExtraFwd.h"
-#include "DataFormats/ParticleFlowCandidate/interface/PFCandidatePhotonExtra.h"
-#include "DataFormats/ParticleFlowCandidate/interface/PFCandidatePhotonExtraFwd.h"
 
 //class to extract Reco Jets
 
@@ -67,6 +61,11 @@
 
 #include "DataFormats/EgammaCandidates/interface/Photon.h"
 #include "DataFormats/EgammaCandidates/interface/PhotonFwd.h"
+
+// classes to extract PFTaus
+
+#include "DataFormats/TauReco/interface/PFTau.h"
+#include "DataFormats/TauReco/interface/PFTauFwd.h"
 
 
 //files to read
@@ -117,6 +116,7 @@ class MasterNTupleMaker : public edm::EDAnalyzer{
   std::vector<float> Jet_px;
   std::vector<float> Jet_py;
   std::vector<float> Jet_pz;
+  std::vector<int> Jet_nConstituents;
 
   // Gen Jet Collection initialization
 
@@ -131,7 +131,8 @@ class MasterNTupleMaker : public edm::EDAnalyzer{
   std::vector<float> GenJet_px;
   std::vector<float> GenJet_py;
   std::vector<float> GenJet_pz;
-
+  std::vector<int> GenJet_nConstituents;
+  
   // Gen Particle Collection initialization
   
   int nGenParticle;
@@ -145,6 +146,7 @@ class MasterNTupleMaker : public edm::EDAnalyzer{
   std::vector<float> GenParticle_px;
   std::vector<float> GenParticle_py;
   std::vector<float> GenParticle_pz;
+  std::vector<int> GenParticle_momPartIdx;
 
   // Reco Muon Collection initialization
 
@@ -188,6 +190,20 @@ class MasterNTupleMaker : public edm::EDAnalyzer{
   std::vector<float> Photon_py;
   std::vector<float> Photon_pz;
   
+  // PFTau Collection
+
+  int nPFTau;
+  std::vector<float> PFTau_e;
+  std::vector<float> PFTau_pt;
+  std::vector<float> PFTau_eta;
+  std::vector<float> PFTau_phi;
+  std::vector<float> PFTau_mass;
+  std::vector<float> PFTau_charge;
+  std::vector<float> PFTau_pdgId;
+  std::vector<float> PFTau_px;
+  std::vector<float> PFTau_py;
+  std::vector<float> PFTau_pz;
+
 }; 
 
 // Constructor & Destructor
@@ -251,6 +267,8 @@ MasterNTupleMaker::MasterNTupleMaker(const edm::ParameterSet& iConfig)
   mtree->GetBranch("Jet_py")->SetTitle("Jet transverse momentum y-component");
   mtree->Branch("Jet_pz", &Jet_pz);
   mtree->GetBranch("Jet_pz")->SetTitle("Jet transverse momentum z-component");
+  mtree->Branch("Jet_nConstituents", &Jet_nConstituents);
+  mtree->GetBranch("Jet_nConstituents")->SetTitle("Jet Constituents");
 
   // Gen Jet Collection initialization //
 
@@ -274,6 +292,9 @@ MasterNTupleMaker::MasterNTupleMaker(const edm::ParameterSet& iConfig)
   mtree->GetBranch("GenJet_py")->SetTitle("Generator Level Jet transverse momentum y-component");
   mtree->Branch("GenJet_pz", &GenJet_pz);
   mtree->GetBranch("GenJet_pz")->SetTitle("Generator Level Jet transverse momentum z-component");  
+  mtree->Branch("GenJet_nConstituents", &GenJet_nConstituents);
+  mtree->GetBranch("GenJet_nConstituents")->SetTitle("Generator Level Jet constituents");
+  
   
   // Gen Particle Collection initialization //
 
@@ -297,6 +318,8 @@ MasterNTupleMaker::MasterNTupleMaker(const edm::ParameterSet& iConfig)
   mtree->GetBranch("GenParticle_py")->SetTitle("Generator Level Particle transverse momentum y-component");
   mtree->Branch("GenParticle_pz", &GenParticle_pz);
   mtree->GetBranch("GenParticle_pz")->SetTitle("Generator Level Particle transverse momentum z-component");  
+  mtree->Branch("GenParticle_momPartIdx", &GenParticle_momPartIdx);
+  mtree->GetBranch("GenParticle_momPartIdx")->SetTitle("Generator Level Particle Mother Index");
 
   // Muon Collection initialization //
 
@@ -373,6 +396,31 @@ MasterNTupleMaker::MasterNTupleMaker(const edm::ParameterSet& iConfig)
   mtree->GetBranch("Photon_py")->SetTitle("Photon Transverse momentum y-component");  
   mtree->Branch("Photon_pz", &Photon_pz);
   mtree->GetBranch("Photon_pz")->SetTitle("Photon Transverse momentum z-component");
+
+  // PFTau Collection //
+
+  mtree->Branch("nPFTau", &nPFTau);
+  mtree->GetBranch("nPFTau")->SetTitle("Number of PFTaus"); 
+  mtree->Branch("PFTau_e", &PFTau_e);
+  mtree->GetBranch("PFTau_e")->SetTitle("PFTau Energy");
+  mtree->Branch("PFTau_pt", &PFTau_pt);
+  mtree->GetBranch("PFTau_pt")->SetTitle("PFTau Transverse Momentum");
+  mtree->Branch("PFTau_eta", &PFTau_eta);
+  mtree->GetBranch("PFTau_eta")->SetTitle("PFTau pseudorapidity");
+  mtree->Branch("PFTau_phi", &PFTau_phi);
+  mtree->GetBranch("PFTau_phi")->SetTitle("PFTau Polar Angle");
+  mtree->Branch("PFTau_mass", &PFTau_mass);
+  mtree->GetBranch("PFTau_mass")->SetTitle("PFTau mass");
+  mtree->Branch("PFTau_charge", &PFTau_charge);
+  mtree->GetBranch("PFTau_charge")->SetTitle("PFTau charge");
+  mtree->Branch("PFTau_pdgId", &PFTau_pdgId);
+  mtree->GetBranch("PFTau_pdgId")->SetTitle("PFTau pdgId");
+  mtree->Branch("PFTau_px", &PFTau_px);
+  mtree->GetBranch("PFTau_px")->SetTitle("PFTau Transverse momentum x-component");
+  mtree->Branch("PFTau_py", &PFTau_py);
+  mtree->GetBranch("PFTau_py")->SetTitle("PFTau Transverse momentum y-component");  
+  mtree->Branch("PFTau_pz", &PFTau_pz);
+  mtree->GetBranch("PFTau_pz")->SetTitle("PFTau Transverse momentum z-component");  
 
 }
 

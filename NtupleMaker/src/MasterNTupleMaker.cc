@@ -1,7 +1,7 @@
 //C++
 //Class: MasterNTupleMaker
 //Original Author: Raj Handique
-//Created on: 10 January 2024
+//Created on: 7 March 2024
 
 //include header files//
 
@@ -44,6 +44,8 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   Handle<reco::PhotonCollection> recoPhotons;
   iEvent.getByLabel(InputTag("photons"), recoPhotons);
 
+  Handle<reco::PFTauCollection> pfTaus;
+  iEvent.getByLabel(InputTag("hpsPFTauProducer"), pfTaus);
   
 
   //--------------------- initialization of the arrays -------------------------//
@@ -77,7 +79,8 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   Jet_px.clear();
   Jet_py.clear();
   Jet_pz.clear();
-
+  Jet_nConstituents.clear();
+  
   // Gen Jet Collection //
 
   nGenJet=0;
@@ -91,6 +94,7 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   GenJet_px.clear();
   GenJet_py.clear();
   GenJet_pz.clear();
+  GenJet_nConstituents.clear();
 
   // Gen Particle Collection //
 
@@ -105,6 +109,7 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   GenParticle_px.clear();
   GenParticle_py.clear();
   GenParticle_pz.clear();
+  GenParticle_momPartIdx.clear();
 
   // Reco Muon Collection //
   nMuon=0;
@@ -145,6 +150,18 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   Photon_py.clear();
   Photon_pz.clear();
   
+  // PF Tau Collection //
+  nPFTau = 0;
+  PFTau_e.clear();
+  PFTau_pt.clear();
+  PFTau_eta.clear();
+  PFTau_phi.clear();
+  PFTau_mass.clear();
+  PFTau_charge.clear();
+  PFTau_pdgId.clear();
+  PFTau_px.clear();
+  PFTau_py.clear();
+  PFTau_pz.clear();
 
   // Filling Particle Flow Candidates in the TTree (Flat NTuple)
 
@@ -195,6 +212,7 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
 	Jet_px.push_back(rJet->px());
 	Jet_py.push_back(rJet->py());
 	Jet_pz.push_back(rJet->pz());
+	Jet_nConstituents.push_back(rJet->nConstituents());
       }
 
        nJet=Jet_pt.size();
@@ -219,6 +237,7 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
 	GenJet_px.push_back(gJet->px());
 	GenJet_py.push_back(gJet->py());
 	GenJet_pz.push_back(gJet->pz());
+	GenJet_nConstituents.push_back(gJet->nConstituents());
       }
 
       nGenJet=GenJet_pt.size();
@@ -232,6 +251,8 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
     
     for(reco::GenParticleCollection::const_iterator genPart=genParticles->begin(); genPart!=genParticles->end(); genPart++){
       
+      //int momindex = -1;
+
       if(genPart->pt()>0.8){
 	
 	GenParticle_e.push_back(genPart->energy());
@@ -244,12 +265,14 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
 	GenParticle_px.push_back(genPart->px());
 	GenParticle_py.push_back(genPart->py());
 	GenParticle_pz.push_back(genPart->pz());
+	GenParticle_momPartIdx.push_back(genPart->(&numberOfMothers()));
+	
       }
-
+      
       nGenParticle=GenParticle_pt.size();
     }
   }
-
+  
   // Filling up Muons in the TTree (Flat NTuple)
   
   if(recoMuons.isValid()){
@@ -313,6 +336,28 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
 	Photon_pz.push_back(rPhoton->pz());
       }
       nPhoton=Photon_pt.size();
+    }
+  }
+
+  // Filling the PFTaus in the TTree (Flat Ntuple)
+
+  if(pfTaus.isValid()){
+    
+    for(reco::PFTauCollection::const_iterator pfTau=pfTaus->begin(); pfTau!=pfTaus->end(); pfTau++){
+      if(pfTau->pt()>3){
+	
+	PFTau_e.push_back(pfTau->energy());
+	PFTau_pt.push_back(pfTau->pt());
+	PFTau_eta.push_back(pfTau->eta());
+	PFTau_phi.push_back(pfTau->phi());
+	PFTau_mass.push_back(pfTau->mass());
+	PFTau_pdgId.push_back(pfTau->pdgId());
+	PFTau_charge.push_back(pfTau->charge());
+	PFTau_px.push_back(pfTau->px());
+	PFTau_py.push_back(pfTau->py());
+	PFTau_pz.push_back(pfTau->pz());
+      }
+      nPFTau=PFTau_pt.size();
     }
   }
   
