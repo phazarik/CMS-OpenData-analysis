@@ -173,7 +173,6 @@ process.Events = cms.EDAnalyzer('MasterNTupleMaker',
 
 #------------------------------------------------------------#
 #          The output root files are stored in the           #
-#          ./NtupleMaker/output/ directory.                  #
 #------------------------------------------------------------#
 
 process.TFileService = cms.Service("TFileService",
