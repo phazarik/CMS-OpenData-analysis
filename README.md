@@ -111,11 +111,11 @@ The output NTuples should be available in the `./output_files` directory.
 
 ### if Data:
 ```
-docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/NtupleMaker/ouput_files/CMS_Data_AOD.root  /home/xondikoi/Desktop/ 
+docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/NtupleMaker/ouput_files/CMS_Data_AOD.root  /home/username_localmachine/desired/path/to/store/the/output_file
 ```
 ### if MC:
 
 ```
-docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/NtupleMaker/ouput_files/CMS_MC_AODSIM.root  /home/xondikoi/Desktop/ 
+docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/NtupleMaker/ouput_files/CMS_MC_AODSIM.root  /home/username_localmachine/desired/path/to/store/the/output_file
 ```
 3. Now one can access the NTuples in their local machine and run the Analysis Codes.
