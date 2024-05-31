@@ -109,7 +109,6 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
   GenParticle_px.clear();
   GenParticle_py.clear();
   GenParticle_pz.clear();
-  GenParticle_momPartIdx.clear();
 
   // Reco Muon Collection //
   nMuon=0;
@@ -265,7 +264,6 @@ MasterNTupleMaker::analyze(const edm::Event& iEvent, const edm::EventSetup& iSet
 	GenParticle_px.push_back(genPart->px());
 	GenParticle_py.push_back(genPart->py());
 	GenParticle_pz.push_back(genPart->pz());
-	GenParticle_momPartIdx.push_back(genPart->(&numberOfMothers()));
 	
       }
       
