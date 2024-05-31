@@ -146,7 +146,6 @@ class MasterNTupleMaker : public edm::EDAnalyzer{
   std::vector<float> GenParticle_px;
   std::vector<float> GenParticle_py;
   std::vector<float> GenParticle_pz;
-  std::vector<int> GenParticle_momPartIdx;
 
   // Reco Muon Collection initialization
 
@@ -317,9 +316,7 @@ MasterNTupleMaker::MasterNTupleMaker(const edm::ParameterSet& iConfig)
   mtree->Branch("GenParticle_py", &GenParticle_py);
   mtree->GetBranch("GenParticle_py")->SetTitle("Generator Level Particle transverse momentum y-component");
   mtree->Branch("GenParticle_pz", &GenParticle_pz);
-  mtree->GetBranch("GenParticle_pz")->SetTitle("Generator Level Particle transverse momentum z-component");  
-  mtree->Branch("GenParticle_momPartIdx", &GenParticle_momPartIdx);
-  mtree->GetBranch("GenParticle_momPartIdx")->SetTitle("Generator Level Particle Mother Index");
+  mtree->GetBranch("GenParticle_pz")->SetTitle("Generator Level Particle transverse momentum z-component"); 
 
   // Muon Collection initialization //
 
