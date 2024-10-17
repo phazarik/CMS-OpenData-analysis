@@ -1,5 +1,5 @@
 # CMS-OpenData-analysis
-## > **Note :** There is a detailed user manual written for anyone wanting to dig a little deeper.
+## (Note : There is a detailed user manual written for anyone wanting to dig a little deeper.)
 ## How to run the analysis codes:
 The analysis codes are kept in the directory `./analysis codes`. Go to the directory and compile the code from the ROOT prompt by doing the following.
 ```
