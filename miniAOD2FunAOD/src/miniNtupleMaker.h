@@ -16,7 +16,10 @@ Header file for miniNtupleMaker
 #include "FWCore/Framework/interface/MakerMacros.h"
 #include "FWCore/Framework/interface/EventSetup.h"
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
+#include "FWCore/ServiceRegistry/interface/Service.h"
+#include "CommonTools/UtilAlgos/interface/TFileService.h"
 #include "FWCore/Utilities/interface/InputTag.h"
+#include "DataFormats/Common/interface/View.h"
 
 //---------------------------------
 // user include files
@@ -160,7 +163,6 @@ private:
 
 miniNtupleMaker::miniNtupleMaker(const edm::ParameterSet& iConfig) {
     // Constructor implementation
-    usesResource("TFileService");
     edm::Service<TFileService> fs;
     mTree = fs->make<TTree>("Events", "EventInfo"); 
 
@@ -344,6 +346,7 @@ miniNtupleMaker::~miniNtupleMaker(){
 void miniNtupleMaker::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
     // Function to fill the descriptions of the parameters
     edm::ParameterSetDescription desc;
+    desc.setUnknown();
     // Add parameters here if needed
     descriptions.addDefault(desc);
 }
