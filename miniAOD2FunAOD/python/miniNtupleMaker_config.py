@@ -136,7 +136,7 @@ else:
     process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/76X_mcRun2_asymptotic_RunIIFall15DR76_v1.db')
     process.GlobalTag.globaltag = '76X_mcRun2_asymptotic_RunIIFall15DR76_v1'
     output_filename = cms.string("../output_files/CMS_MC_AODSIM.root")
-    files = FileUtils.loadListFromFile("../datasets/CMS_mc_RunIIFall15MiniAODv2_VBF_HToMuMu_M150_13TeV_powheg_pythia8_MINIAODSIM_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_60000_file_index.txt")
+    files = FileUtils.loadListFromFile("../datasets/CMS_Run2015D_MuOnia_MINIAOD_16Dec2015-v1_10000_file_index.txt")
 
     process.source = cms.Source("PoolSource",
                                 fileNames = cms.untracked.vstring( *files )
