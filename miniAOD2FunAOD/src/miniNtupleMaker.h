@@ -163,6 +163,18 @@ private:
 
 miniNtupleMaker::miniNtupleMaker(const edm::ParameterSet& iConfig) {
     // Constructor implementation
+
+    // Initialize the tokens for the input collections
+    muonToken_ = consumes<pat::MuonCollection>(iConfig.getParameter<edm::InputTag>("recoMuons"));
+    electronToken_ = consumes<pat::ElectronCollection>(iConfig.getParameter<edm::InputTag>("recoElectrons"));
+    jetToken_ = consumes<pat::JetCollection>(iConfig.getParameter<edm::InputTag>("recoJets"));
+    photonToken_ = consumes<pat::PhotonCollection>(iConfig.getParameter<edm::InputTag>("recoPhotons"));
+    tauToken_ = consumes<pat::TauCollection>(iConfig.getParameter<edm::InputTag>("recoTaus"));
+    metToken_ = consumes<pat::METCollection>(iConfig.getParameter<edm::InputTag>("recoMETs"));
+    genParticleToken_ = consumes<reco::GenParticleCollection>(iConfig.getParameter<edm::InputTag>("genParticles"));
+    genJetToken_ = consumes<reco::GenJetCollection>(iConfig.getParameter<edm::InputTag>("genJets"));
+
+
     edm::Service<TFileService> fs;
     mTree = fs->make<TTree>("Events", "EventInfo"); 
 
