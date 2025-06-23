@@ -147,11 +147,11 @@ else:
 # ----------------- Analyzer Module ------------------------ #
 process.Events = cms.EDAnalyzer("miniNtupleMaker",
                                  isData=cms.untracked.bool(opt.isData),
-                                 muons = cms.untracked.InputTag("slimmedMuons"),
-                                 electrons = cms.untracked.InputTag("slimmedElectrons"),
-                                 photons = cms.untracked.InputTag("slimmedPhotons"),
-                                 jets = cms.untracked.InputTag("slimmedJets"),
-                                 mets = cms.untracked.InputTag("slimmedMETs"),
+                                 recoMuons = cms.untracked.InputTag("slimmedMuons"),
+                                 recoElectrons = cms.untracked.InputTag("slimmedElectrons"),
+                                 recoPhotons = cms.untracked.InputTag("slimmedPhotons"),
+                                 recoJets = cms.untracked.InputTag("slimmedJets"),
+                                 recoMETs = cms.untracked.InputTag("slimmedMETs"),
                                  genJets = cms.untracked.InputTag("slimmedGenJets"),
                                  genParticles = cms.untracked.InputTag("prunedGenParticles"),
                                  )
