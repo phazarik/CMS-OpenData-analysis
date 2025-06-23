@@ -32,7 +32,7 @@ Header file for miniNtupleMaker
 
 // For gen objects
 #include "DataFormats/HepMCCandidate/interface/GenParticle.h"
-#include "DataFormats/HepMCCandidate/interface/GenJet.h"
+#include "DataFormats/JetReco/interface/GenJet.h"
 
 // ROOT Objects
 #include "TTree.h"
