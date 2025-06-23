@@ -13,7 +13,7 @@
 
 using namespace std;
 
-void miniNtupleMaker::miniNtupleMaker(const edm::ParameterSet& iConfig) {
+miniNtupleMaker::miniNtupleMaker(const edm::ParameterSet& iConfig) {
     // Initialize the tokens for the input collections
     muonToken_ = consumes<pat::MuonCollection>(iConfig.getParameter<edm::InputTag>("recoMuons"));
     electronToken_ = consumes<pat::ElectronCollection>(iConfig.getParameter<edm::InputTag>("recoElectrons"));
@@ -273,7 +273,7 @@ void
 miniNtupleMaker::beginJob(){
     std::cout<<"miniNtupleMaker has started!"<<std::endl;
 }
-
+void
 miniNtupleMaker::endJob(){
     std::cout<<"miniNtupleMaker has ended!"<<std::endl;
 }
