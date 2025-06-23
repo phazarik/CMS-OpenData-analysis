@@ -14,7 +14,7 @@ The verbosity number in the `Process()` function of the main C script can be twe
 
 > **Note :** This particular set of codes works with a specific structure of the input ntuple. If there is any change made to the branches of the flat ntuple, The `TTreeReader` method in the `AnaOpenData.h` file needs to be modified accordingly. Otherwise it leads to "Segmentation error" during runtime.
 
-## How to make AOD2FunAOD and miniAOD2FunAOD:
+## How to make AOD2FunAOD:
 
 
 The AOD2FunAOD maker codes can be found in the `./AOD2FunAOD` directory.
@@ -81,12 +81,12 @@ scram b -j 8
 ### For Data:
 #### For 7TeV:
 ```
-cmsRun miniNtuplemaker_cfg.py isData=True nEvents=1000
+cmsRun miniNtuplemaker_config.py isData=True nEvents=1000
 ```
 ### For MC:
 
 ```
-cmsRun miniNtuplemaker_cfg.py isData=False nEvents=1000
+cmsRun miniNtuplemaker_config.py isData=False nEvents=1000
 ```
 6. That's it.<br>
 The output NTuples should be available in the `./output_files` directory.
@@ -139,9 +139,15 @@ cmsRun miniNtuplemaker_config.py isData=True nEvents=1000
 ```
 
 ### For MC:
+Run 1:<br>
 
 ```
 cmsRun masterntuplemaker_cfg.py isData=False nEvents=1000
+```
+Run 2:<br>
+
+```
+cmsRun miniNtuplemaker_config.py isData=False nEvents=1000
 ```
 7. That's it.
 The output NTuples should be available in the `./output_files` directory.
