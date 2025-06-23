@@ -105,8 +105,8 @@ scp -C [output_filename.root] username_localmachine@[Host_IP_Address]:/home/user
 
 ### Requirements:
 1. Docker-Desktop should be up and running on the system.
-2. Docker container image containing CMSSW_5_3_32 should be installed.
-3. The NTupleMaker files shall be placed in the directory `./CMSSW_5_3_32/src/`
+2. Docker container image containing CMSSW_5_3_32 (For Run 1)  or CMSSW_7_6_7 (For Run 2) should be installed.
+3. The AOD2FunAOD files shall be placed in the directory `./CMSSW_5_3_32/src/` and the miniAOD2FunAOD files shall be placed in the directory `./CMSSW_7_6_7/src/`
 
 For more information on how to set up the Docker-Desktop visit (https://opendata.cern.ch/docs/cms-guide-docker)
 
@@ -155,14 +155,26 @@ The output NTuples should be available in the `./output_files` directory.
 ### Getting the output ROOT files to the local machine:
 1. Open another terminal on your local machine.
 2. Do the following:
-
+<br>
+For Run 1:<br>
 ### if Data:
 ```
-docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/NtupleMaker/ouput_files/CMS_Data_AOD.root  /home/username_localmachine/desired/path/to/store/the/output_file
+docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/AOD2FunAOD/ouput_files/CMS_Data_AOD.root  /home/username_localmachine/desired/path/to/store/the/output_file
 ```
 ### if MC:
 
 ```
-docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/NtupleMaker/ouput_files/CMS_MC_AODSIM.root  /home/username_localmachine/desired/path/to/store/the/output_file
+docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/AOD2FunAOD/ouput_files/CMS_MC_AODSIM.root  /home/username_localmachine/desired/path/to/store/the/output_file
+```
+For Run 2:<br> 
+
+### if Data:
+```
+docker cp CMSSW_7_6_7:/code/CMSSW_7_6_7/CMS-OpenData-analysis/miniAOD2FunAOD/ouput_files/CMS_Data_AOD.root  /home/username_localmachine/desired/path/to/store/the/output_file
+```
+### if MC:
+
+```
+docker cp CMSSW_7_6_7:/code/CMSSW_7_6_7/CMS-OpenData-analysis/miniAOD2FunAOD/ouput_files/CMS_MC_AODSIM.root  /home/username_localmachine/desired/path/to/store/the/output_file
 ```
 3. Now one can access the NTuples in their local machine and run the Analysis Codes.
