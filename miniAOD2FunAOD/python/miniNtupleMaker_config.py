@@ -116,8 +116,8 @@ process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(opt.nEvents))
 #-------------------------------------------------------------#
 
 if opt.isData:
-    process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/FT53_V21A_AN6_FULL_data_stripped.db')
-    process.GlobalTag.globaltag = 'FT53_V21A_AN6_FULL::All'
+    process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/76X_dataRun2_16Dec2015_v0.db')
+    process.GlobalTag.globaltag = '76X_dataRun2_16Dec2015_v0'
     output_filename = cms.string("../output_files/CMS_Data_AOD.root")
     files = FileUtils.loadListFromFile("../datasets/CMS_Run2012D_TauParked_AOD_22Jan2013-v1_20000_file_index.txt")
 
@@ -126,17 +126,17 @@ if opt.isData:
                                 fileNames = cms.untracked.vstring( *files )
                                 )
     
-    goodJSON_8TeV = "../interface/Cert_190456-208686_8TeV_22Jan2013ReReco_Collisions12_JSON.txt"
-    myLumis = LumiList.LumiList(filename=goodJSON_8TeV).getCMSSWString().split(",")
+    goodJSON = "../interface/Cert_190456-208686_8TeV_22Jan2013ReReco_Collisions12_JSON.txt"
+    myLumis = LumiList.LumiList(filename=goodJSON).getCMSSWString().split(",")
     process.source.lumisToProcess = CfgTypes.untracked(
     CfgTypes.VLuminosityBlockRange())
     process.source.lumisToProcess.extend(myLumis)
 
 else:
-    process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/START53_V27_MC_stripped.db')
-    process.GlobalTag.globaltag = 'START53_V27::All'
+    process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/76X_mcRun2_asymptotic_RunIIFall15DR76_v1.db')
+    process.GlobalTag.globaltag = '76X_mcRun2_asymptotic_RunIIFall15DR76_v1'
     output_filename = cms.string("../output_files/CMS_MC_AODSIM.root")
-    files = FileUtils.loadListFromFile("../datasets/CMS_MonteCarlo2012_Summer12_DR53X_GluGluTo4L_Contin_8TeV-gg2vv315-pythia6_AODSIM_PU_S10_START53_V19-v1_00000_file_index.txt")
+    files = FileUtils.loadListFromFile("../datasets/CMS_mc_RunIIFall15MiniAODv2_VBF_HToMuMu_M150_13TeV_powheg_pythia8_MINIAODSIM_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_60000_file_index.txt")
 
     process.source = cms.Source("PoolSource",
                                 fileNames = cms.untracked.vstring( *files )
