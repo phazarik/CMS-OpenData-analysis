@@ -1,5 +1,5 @@
-# CMS-OpenData-analysis (Developer Branch)
-## CAUTION: UNSTABLE CONFIG FILES , DO NOT USE THIS BRANCH FOR PRODUCTION
+# CMS-OpenData-analysis
+
 ## How to run the analysis codes:
 The analysis codes are kept in the directory `./analysis codes`. Go to the directory and compile the code from the ROOT prompt by doing the following.
 ```
