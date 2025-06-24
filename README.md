@@ -110,8 +110,6 @@ The output NTuples should be available in the `./output_files` directory.
 ### Getting the output ROOT files to the local machine:
 1. Open another terminal on your local machine.
 2. Do the following:
-<br>
-For Run 1:<br>
 
 ### if Data:
 ```
