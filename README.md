@@ -87,7 +87,7 @@ For more information on how to set up the Docker-Desktop visit (https://opendata
 scram b -j 8
 ```
 4. Open the `./python` directory to find the python exectuable configuration file, `masterntuplemaker_cfg.py` (for Run 1). 
-6. To execute the configuration file and get the output NTuple do:
+5. To execute the configuration file and get the output NTuple do:
 
 ### For Data (Run 1):
 For 7TeV:
@@ -100,12 +100,11 @@ For 8TeV:
 cmsRun masterntuplemaker_cfg.py isData=True is8TeV=True nEvents=1000
 ```
 ### For MC:
-Run 1:<br>
 
 ```
 cmsRun masterntuplemaker_cfg.py isData=False nEvents=1000
 ```
-7. That's it.
+6. That's it.
 The output NTuples should be available in the `./output_files` directory.
 
 ### Getting the output ROOT files to the local machine:
