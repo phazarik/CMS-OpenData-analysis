@@ -73,7 +73,7 @@ scp -C [output_filename.root] username_localmachine@[Host_IP_Address]:/home/user
 
 ### Requirements:
 1. Docker-Desktop should be up and running on the system.
-2. Docker container image containing CMSSW_5_3_32 (For Run 1)  or CMSSW_7_6_7 (For Run 2) should be installed.
+2. Docker container image containing CMSSW_5_3_32 (For Run 1).
 3. The AOD2FunAOD files shall be placed in the directory `./CMSSW_5_3_32/src/`.
 
 For more information on how to set up the Docker-Desktop visit (https://opendata.cern.ch/docs/cms-guide-docker)
