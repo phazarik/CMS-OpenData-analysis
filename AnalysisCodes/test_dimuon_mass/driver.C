@@ -13,7 +13,7 @@ void driver(int sample=0)
 
 
   if(sample==0){
-    chain->Add("testoutput.root");
+    chain->Add("../../AOD2FunAOD/Test/testoutput.root");
     hstfilename = "test_hist.root"; 
   }  
 
