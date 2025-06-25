@@ -1,7 +1,7 @@
 # CMS-OpenData-analysis
 
 ## How to run the analysis codes:
-The analysis codes are kept in the directory `./analysis codes`. Go to the directory and compile the code from the ROOT prompt by doing the following.
+The analysis codes are kept in the directory `./AnalysisCodes`. Go to the directory and compile the code from the ROOT prompt by doing the following.
 ```
 .L AnaOpenData.C+
 ``` 
