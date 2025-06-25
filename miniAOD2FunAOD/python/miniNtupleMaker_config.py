@@ -118,7 +118,7 @@ process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(opt.nEvents))
 if opt.isData:
     process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/76X_dataRun2_16Dec2015_v0.db')
     process.GlobalTag.globaltag = '76X_dataRun2_16Dec2015_v0'
-    output_filename = cms.string("../output_files/CMS_Data_AOD.root")
+    output_filename = cms.string("../output_files/CMS_Data_miniAOD.root")
     files = FileUtils.loadListFromFile("../datasets/CMS_Run2015D_MuOnia_MINIAOD_16Dec2015-v1_10000_file_index.txt")
 
     
@@ -126,7 +126,7 @@ if opt.isData:
                                 fileNames = cms.untracked.vstring( *files )
                                 )
     
-    goodJSON = "../interface/Cert_190456-208686_8TeV_22Jan2013ReReco_Collisions12_JSON.txt"
+    goodJSON = "../interface/Cert_13TeV_16Dec2015ReReco_Collisions15_25ns_JSON_v2.txt"
     myLumis = LumiList.LumiList(filename=goodJSON).getCMSSWString().split(",")
     process.source.lumisToProcess = CfgTypes.untracked(
     CfgTypes.VLuminosityBlockRange())
@@ -135,7 +135,7 @@ if opt.isData:
 else:
     process.GlobalTag.connect = cms.string('sqlite_file:/cvmfs/cms-opendata-conddb.cern.ch/76X_mcRun2_asymptotic_RunIIFall15DR76_v1.db')
     process.GlobalTag.globaltag = '76X_mcRun2_asymptotic_RunIIFall15DR76_v1'
-    output_filename = cms.string("../output_files/CMS_MC_AODSIM.root")
+    output_filename = cms.string("../output_files/CMS_MC_miniAODSIM.root")
     files = FileUtils.loadListFromFile("../datasets/CMS_mc_RunIIFall15MiniAODv2_VBF_HToMuMu_M150_13TeV_powheg_pythia8_MINIAODSIM_PU25nsData2015v1_76X_mcRun2_asymptotic_v12-v1_60000_file_index.txt")
 
     process.source = cms.Source("PoolSource",
