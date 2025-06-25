@@ -155,8 +155,11 @@ The output NTuples should be available in the `./output_files` directory.
 ### Getting the output ROOT files to the local machine:
 1. Open another terminal on your local machine.
 2. Do the following:
+
 <br>
+
 For Run 1:<br>
+
 ### if Data:
 ```
 docker cp CMSSW_5_3_32:/code/CMSSW_5_3_32/CMS-OpenData-analysis/AOD2FunAOD/ouput_files/CMS_Data_AOD.root  /home/username_localmachine/desired/path/to/store/the/output_file
